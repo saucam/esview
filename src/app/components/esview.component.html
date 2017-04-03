@@ -1,7 +1,11 @@
 <form>
   <label>Name: </label><br />
   <input type="text" name="indexname" [(ngModel)]="indexname" />
-  <input type="text" name="indextype" [(ngModel)]="indextype" />
+  <input type="text" name="indextype" [(ngModel)]="indextype" /><br />
   <input type="text" name="url" [(ngModel)]="url" />
 </form>
-<button (click)="getStatus()">Status</button>
+<button (click)="getIndices()">List Indices</button>
+<hr />
+<div style="padding: 0px 4px;" *ngFor = "let result of results">
+  {{result}}<br />
+</div>
