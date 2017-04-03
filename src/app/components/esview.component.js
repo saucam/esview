@@ -27,7 +27,7 @@ var EsviewComponent = (function () {
     };
     EsviewComponent.prototype.getIndices = function () {
         var _this = this;
-        this.es.getIndices(this.url, this.indexname + '/' + this.indextype).subscribe(function (posts) {
+        this.es.getIndices(this.url).subscribe(function (posts) {
             console.log('got results' + posts.split('\n'));
             _this.results = posts.split('\n');
         });

@@ -12,7 +12,7 @@ export class EsviewComponent {
   indexname: string;
   indextype: string;
   url: string;
-  result: string[];
+  results: string[];
   //es: ElasticService;
 
   constructor(private es: ElasticService) {
@@ -30,7 +30,7 @@ export class EsviewComponent {
   }
 
   getIndices() {
-  this.es.getIndices(this.url, this.indexname + '/' + this.indextype).subscribe(posts => {
+  this.es.getIndices(this.url).subscribe(posts => {
       console.log('got results' + posts.split('\n'))
       this.results = posts.split('\n')
   });
