@@ -29,6 +29,12 @@ var ElasticService = (function () {
         return this.http.get('http://' + host + '/' + '_cat/indices?v')
             .map(function (res) { return res.text(); });
     };
+    ElasticService.prototype.getDocuments = function (host, indextype) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post('http://' + host + '/' + indextype + '/_search', { "query": {} }, options)
+            .map(function (res) { return res.json(); });
+    };
     return ElasticService;
 }());
 ElasticService = __decorate([

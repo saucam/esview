@@ -22,4 +22,13 @@ export class ElasticService {
     return this.http.get('http://' + host + '/' + '_cat/indices?v')
     .map(res => res.text());
     }
+
+    getDocuments(host: String, indextype: String){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post('http://' + host + '/' + indextype + '/_search',
+    {"query": {}}, options)
+    .map(res => res.json());
+    }
 }

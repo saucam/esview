@@ -13,7 +13,7 @@ export class EsviewComponent {
   indextype: string;
   url: string;
   results: string[];
-  //es: ElasticService;
+  // es: ElasticService;
 
   constructor(private es: ElasticService) {
     this.indexname = 'historyindex';
@@ -33,6 +33,15 @@ export class EsviewComponent {
   this.es.getIndices(this.url).subscribe(posts => {
       console.log('got results' + posts.split('\n'))
       this.results = posts.split('\n')
+  });
+  }
+
+  getDocuments() {
+  console.log('Get documents for index = ' + this.indexname);
+  // this.es.connect(this.url);
+  this.es.getDocuments(this.url, this.indexname + '/' + this.indextype).subscribe(posts => {
+      console.log('got results' + posts.hits.hits)
+      this.results = posts.hits.hits.map((item)=>JSON.stringify(item))
   });
   }
 }

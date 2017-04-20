@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var elastic_service_1 = require("../services/elastic.service");
 var EsviewComponent = (function () {
-    //es: ElasticService;
+    // es: ElasticService;
     function EsviewComponent(es) {
         this.es = es;
         this.indexname = 'historyindex';
@@ -30,6 +30,15 @@ var EsviewComponent = (function () {
         this.es.getIndices(this.url).subscribe(function (posts) {
             console.log('got results' + posts.split('\n'));
             _this.results = posts.split('\n');
+        });
+    };
+    EsviewComponent.prototype.getDocuments = function () {
+        var _this = this;
+        console.log('Get documents for index = ' + this.indexname);
+        // this.es.connect(this.url);
+        this.es.getDocuments(this.url, this.indexname + '/' + this.indextype).subscribe(function (posts) {
+            console.log('got results' + posts.hits.hits);
+            _this.results = posts.hits.hits.map(function (item) { return JSON.stringify(item); });
         });
     };
     return EsviewComponent;

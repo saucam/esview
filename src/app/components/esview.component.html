@@ -5,6 +5,7 @@
   <input type="text" name="url" [(ngModel)]="url" />
 </form>
 <button (click)="getIndices()">List Indices</button>
+<button (click)="getDocuments()">List Documents</button>
 <hr />
 <div style="padding: 0px 4px;" *ngFor = "let result of results">
   {{result}}<br />
